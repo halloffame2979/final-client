@@ -7,11 +7,11 @@ node_js:
 before_install: 
   - chmod +x install_aws.sh
   - chmod +x aws_credential.sh
-  - chmod +x get_backend_url.sh
+  - chmod +x get_url.sh
   - ./install_aws.sh
   - aws --version
   - ./aws_credential.sh
-  - ./get_backend_url.sh
+  - ./get_url.sh
 install: 
   - npm install
 script:
