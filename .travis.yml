@@ -1,0 +1,21 @@
+branches:
+  only:
+    - "master"
+language: node_js
+node_js:
+  - 16
+before_install: 
+  - chmod +x install_aws.sh
+  - chmod +x aws_credential.sh
+  - chmod +x get_backend_url.sh
+  - ./install_aws.sh
+  - aws --version
+  - ./aws_credential.sh
+  - ./get_backend_url.sh
+install: 
+  - npm install
+script:
+  - npm run build
+  - aws s3 sync ./build s3://huyvq25-final-client
+  - aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths "/*"
+ 
